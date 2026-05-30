@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Triple DES Security</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon"><i class="fas fa-shield-halved"></i></div>
+    <div class="brand-text">
+      <span class="brand-name">Triple DES</span>
+      <span class="brand-sub">Data Encryption Standard</span>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="#" class="nav-item active" onclick="showPage('beranda',this)"><i class="fas fa-house"></i><span>Beranda</span></a>
+    <a href="#" class="nav-item" onclick="showPage('enkripsi',this)"><i class="fas fa-lock"></i><span>Enkripsi</span></a>
+    <a href="#" class="nav-item" onclick="showPage('dekripsi',this)"><i class="fas fa-lock-open"></i><span>Dekripsi</span></a>
+    <a href="#" class="nav-item" onclick="showPage('riwayat',this)"><i class="fas fa-clock-rotate-left"></i><span>Riwayat</span></a>
+    <a href="#" class="nav-item" onclick="showPage('tentang',this)"><i class="fas fa-circle-info"></i><span>Tentang</span></a>
+  </nav>
+  <div class="sidebar-security">
+    <div class="security-header"><div class="security-dot"></div><span>Keamanan Data</span></div>
+    <p>Triple DES menggunakan tiga kunci berbeda untuk memberikan perlindungan berlapis pada data Anda.</p>
+    <div class="security-visual"><div class="lock-3d"><i class="fas fa-database"></i></div></div>
+  </div>
+</aside>
+
+<main class="main-content">
+
+  <!-- BERANDA -->
+  <section id="page-beranda" class="page active">
+    <div class="page-header">
+      <div><h1>Selamat Datang! 👋</h1><p>Sistem enkripsi data Triple DES siap melindungi informasi penting Anda.</p></div>
+      <div class="header-time" id="headerTime"></div>
+    </div>
+    <div class="hero-banner">
+      <div class="hero-left">
+        <div class="hero-icon-wrap">
+          <div class="hero-rings"><div class="ring ring1"></div><div class="ring ring2"></div><div class="ring ring3"></div></div>
+          <i class="fas fa-shield-halved hero-shield"></i>
+        </div>
+      </div>
+      <div class="hero-right">
+        <h2>Triple DES Encryption</h2>
+        <p>Algoritma enkripsi dengan tiga tahap proses untuk memberikan keamanan tingkat tinggi pada data digital yang Anda miliki.</p>
+        <div class="hero-badges">
+          <div class="badge badge-blue"><i class="fas fa-shield"></i><div><strong>Aman</strong><span>Menggunakan 3 kunci berbeda untuk enkripsi berlapis.</span></div></div>
+          <div class="badge badge-green"><i class="fas fa-check-circle"></i><div><strong>Terpercaya</strong><span>Algoritma terbukti kuat dan digunakan secara luas.</span></div></div>
+          <div class="badge badge-purple"><i class="fas fa-bolt"></i><div><strong>Efisien</strong><span>Proses cepat dengan hasil enkripsi yang andal.</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="quick-grid">
+      <div class="quick-card">
+        <div class="quick-icon qblue"><i class="fas fa-lock"></i></div>
+        <h3>Enkripsi Data</h3><p>Ubah plaintext menjadi ciphertext</p>
+        <textarea class="quick-input" placeholder="Masukkan pesan yang akan dienkripsi..." id="homeEncInput" oninput="updateCount(this,'homeEncCount')"></textarea>
+        <div class="char-count"><span id="homeEncCount">0</span>/1000</div>
+        <div class="key-fields">
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="hek1" placeholder="Kunci 1 (E)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="hek2" placeholder="Kunci 2 (D)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="hek3" placeholder="Kunci 3 (E)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+        </div>
+        <button class="btn-encrypt" onclick="quickEncrypt()"><i class="fas fa-lock"></i> ENKRIPSI</button>
+      </div>
+      <div class="quick-card">
+        <div class="quick-icon qgreen"><i class="fas fa-lock-open"></i></div>
+        <h3>Dekripsi Data</h3><p>Ubah ciphertext menjadi plaintext</p>
+        <textarea class="quick-input" placeholder="Masukkan ciphertext yang akan didekripsi..." id="homeDecInput" oninput="updateCount(this,'homeDecCount')"></textarea>
+        <div class="char-count"><span id="homeDecCount">0</span>/1000</div>
+        <div class="key-fields">
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="hdk1" placeholder="Kunci 1 (E)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="hdk2" placeholder="Kunci 2 (D)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="hdk3" placeholder="Kunci 3 (E)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+        </div>
+        <button class="btn-decrypt" onclick="quickDecrypt()"><i class="fas fa-lock-open"></i> DEKRIPSI</button>
+      </div>
+      <div class="stats-card">
+        <h3>Ringkasan Aktivitas</h3><p>Aktivitas enkripsi & dekripsi Anda</p>
+        <div class="stats-grid">
+          <div class="stat-item stat-total"><i class="fas fa-file-lines"></i><div><span class="stat-num" id="statTotal">0</span><span>Total Aktivitas</span></div></div>
+          <div class="stat-item stat-enc"><i class="fas fa-lock"></i><div><span class="stat-num" id="statEnc">0</span><span>Enkripsi</span></div></div>
+          <div class="stat-item stat-dec"><i class="fas fa-lock-open"></i><div><span class="stat-num" id="statDec">0</span><span>Dekripsi</span></div></div>
+          <div class="stat-item stat-avg"><i class="fas fa-clock"></i><div><span class="stat-num" id="statAvg">0</span><span>Rata-rata/Hari</span></div></div>
+        </div>
+        <div class="recent-header"><h4>Riwayat Terakhir</h4><a href="#" onclick="showPage('riwayat',null)">Lihat Semua</a></div>
+        <div id="recentList"><p class="empty-msg">Belum ada aktivitas.</p></div>
+      </div>
+    </div>
+    <div class="tips-banner">
+      <i class="fas fa-lightbulb"></i>
+      <div><strong>Tips Keamanan</strong><span>Gunakan kombinasi kunci yang kuat dan jangan bagikan kunci Anda kepada siapapun</span></div>
+    </div>
+  </section>
+
+  <!-- ENKRIPSI -->
+  <section id="page-enkripsi" class="page">
+    <div class="page-header">
+      <div><h1><i class="fas fa-lock"></i> Enkripsi Data</h1><p>Lindungi data penting Anda dengan algoritma Triple DES.</p></div>
+      <div class="header-date"><i class="fas fa-calendar"></i><span id="encDate"></span>&nbsp;<i class="fas fa-clock"></i><span id="encTime"></span></div>
+    </div>
+    <div class="info-banner info-blue">
+      <i class="fas fa-circle-info"></i>
+      <div><h3>Apa itu Enkripsi?</h3><p>Enkripsi adalah proses mengubah data asli <span class="tag-plain">plaintext</span> menjadi bentuk yang tidak dapat dibaca <span class="tag-cipher">ciphertext</span> menggunakan kunci tertentu.</p></div>
+      <div class="flow-visual">
+        <div class="flow-box plain"><i class="fas fa-file-lines"></i></div>
+        <i class="fas fa-arrow-right flow-arrow"></i>
+        <div class="flow-box shield"><i class="fas fa-shield-halved"></i></div>
+        <i class="fas fa-arrow-right flow-arrow"></i>
+        <div class="flow-box cipher"><span>!@#*</span></div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="form-card">
+        <h3><i class="fas fa-shield-halved"></i> Form Enkripsi</h3>
+        <p>Masukkan data dan kunci untuk proses enkripsi.</p>
+        <label>Plaintext (Pesan)</label>
+        <textarea id="encPlaintext" placeholder="Masukkan pesan yang akan dienkripsi..." oninput="updateCount(this,'encCount')"></textarea>
+        <div class="char-count"><span id="encCount">0</span>/1000</div>
+        <label>Kunci Enkripsi (3 Kunci Berbeda)</label>
+        <div class="key-fields">
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="encKey1" placeholder="Kunci 1 (E)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="encKey2" placeholder="Kunci 2 (D)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="encKey3" placeholder="Kunci 3 (E)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+        </div>
+        <button class="btn-encrypt full" onclick="doEncrypt()"><i class="fas fa-lock"></i> PROSES ENKRIPSI</button>
+        <p class="process-note"><i class="fas fa-info-circle"></i> Proses: Enkripsi (K1) → Dekripsi (K2) → Enkripsi (K3)</p>
+      </div>
+      <div>
+        <div class="steps-card">
+          <h3><i class="fas fa-layer-group"></i> Tahapan Enkripsi Triple DES</h3>
+          <p>Proses enkripsi dilakukan dalam tiga tahap.</p>
+          <div class="step-item"><div class="step-num s1">1</div><div class="step-icon"><i class="fas fa-lock"></i></div><div><strong>Enkripsi dengan Kunci 1 (E)</strong><p>Data akan dienkripsi menggunakan kunci pertama.</p></div></div>
+          <div class="step-item"><div class="step-num s2">2</div><div class="step-icon"><i class="fas fa-lock-open"></i></div><div><strong>Dekripsi dengan Kunci 2 (D)</strong><p>Hasil enkripsi pertama didekripsi menggunakan kunci kedua.</p></div></div>
+          <div class="step-item"><div class="step-num s3">3</div><div class="step-icon"><i class="fas fa-lock"></i></div><div><strong>Enkripsi dengan Kunci 3 (E)</strong><p>Hasil dekripsi kedua dienkripsi kembali menggunakan kunci ketiga.</p></div></div>
+        </div>
+        <div class="result-card">
+          <div class="result-header"><h3><i class="fas fa-shield-halved"></i> Hasil Enkripsi</h3><button class="btn-copy" onclick="copyResult('encResult')"><i class="fas fa-copy"></i> Salin Hasil</button></div>
+          <div class="result-empty" id="encResultEmpty"><i class="fas fa-shield-halved fa-2x"></i><p>Belum ada hasil enkripsi.</p><span>Silakan masukkan data dan kunci, lalu klik tombol proses enkripsi.</span></div>
+          <div class="result-output" id="encResult" style="display:none"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEKRIPSI -->
+  <section id="page-dekripsi" class="page">
+    <div class="page-header">
+      <div><h1><i class="fas fa-lock-open"></i> Dekripsi Data</h1><p>Kembalikan ciphertext menjadi plaintext asli menggunakan tiga tahap dekripsi Triple DES.</p></div>
+      <div class="header-date"><i class="fas fa-calendar"></i><span id="decDate"></span>&nbsp;<i class="fas fa-clock"></i><span id="decTime"></span></div>
+    </div>
+    <div class="info-banner info-green">
+      <i class="fas fa-circle-info"></i>
+      <div><h3>Apa itu Dekripsi?</h3><p>Dekripsi adalah proses mengembalikan data terenkripsi <span class="tag-cipher">ciphertext</span> menjadi data asli <span class="tag-plain">plaintext</span> menggunakan kunci yang sesuai.</p></div>
+      <div class="flow-visual">
+        <div class="flow-box cipher"><span>!@#*</span></div>
+        <i class="fas fa-arrow-right flow-arrow"></i>
+        <div class="flow-box shield"><i class="fas fa-shield-halved"></i></div>
+        <i class="fas fa-arrow-right flow-arrow"></i>
+        <div class="flow-box plain"><i class="fas fa-file-lines"></i></div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="form-card">
+        <h3><i class="fas fa-lock-open"></i> Form Dekripsi</h3>
+        <p>Masukkan ciphertext dan kunci untuk proses dekripsi.</p>
+        <label>Ciphertext</label>
+        <textarea id="decCiphertext" placeholder="Masukkan ciphertext yang akan didekripsi..." oninput="updateCount(this,'decCount')"></textarea>
+        <div class="char-count"><span id="decCount">0</span>/1000</div>
+        <label>Kunci Dekripsi (3 Kunci Berbeda)</label>
+        <div class="key-fields">
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="decKey1" placeholder="Kunci 1 (E)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="decKey2" placeholder="Kunci 2 (D)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+          <div class="key-field"><i class="fas fa-key"></i><input type="password" id="decKey3" placeholder="Kunci 3 (E)"><i class="fas fa-eye toggle-eye" onclick="toggleEye(this)"></i></div>
+        </div>
+        <button class="btn-decrypt full" onclick="doDecrypt()"><i class="fas fa-lock-open"></i> PROSES DEKRIPSI</button>
+        <p class="process-note"><i class="fas fa-info-circle"></i> Proses: Dekripsi (K3) → Enkripsi (K2) → Dekripsi (K1)</p>
+      </div>
+      <div>
+        <div class="steps-card">
+          <h3><i class="fas fa-layer-group"></i> Tahapan Dekripsi Triple DES</h3>
+          <p>Proses dekripsi dilakukan dalam tiga tahap kebalikan dari enkripsi.</p>
+          <div class="step-item"><div class="step-num s1">1</div><div class="step-icon"><i class="fas fa-lock-open"></i></div><div><strong>Dekripsi dengan Kunci 3 (E)</strong><p>Lapisan ketiga dibuka menggunakan kunci ketiga.</p></div></div>
+          <div class="step-item"><div class="step-num s2">2</div><div class="step-icon"><i class="fas fa-lock"></i></div><div><strong>Enkripsi dengan Kunci 2 (D)</strong><p>Hasil dekripsi lapisan kedua dienkripsi menggunakan kunci kedua.</p></div></div>
+          <div class="step-item"><div class="step-num s3">3</div><div class="step-icon"><i class="fas fa-lock-open"></i></div><div><strong>Dekripsi dengan Kunci 1 (E)</strong><p>Lapisan terakhir dibuka menggunakan kunci pertama hingga data asli berhasil dipulihkan.</p></div></div>
+        </div>
+        <div class="result-card">
+          <div class="result-header"><h3><i class="fas fa-lock-open"></i> Hasil Dekripsi</h3><button class="btn-copy" onclick="copyResult('decResult')"><i class="fas fa-copy"></i> Salin Hasil</button></div>
+          <div class="result-empty" id="decResultEmpty"><i class="fas fa-lock-open fa-2x"></i><p>Belum ada hasil dekripsi.</p><span>Silakan masukkan data dan kunci, lalu klik tombol proses dekripsi.</span></div>
+          <div class="result-output" id="decResult" style="display:none"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIWAYAT -->
+  <section id="page-riwayat" class="page">
+    <div class="page-header">
+      <div><h1><i class="fas fa-clock-rotate-left"></i> Riwayat</h1><p>Daftar semua aktivitas enkripsi dan dekripsi yang telah dilakukan.</p></div>
+    </div>
+    <div class="riwayat-toolbar">
+      <div class="filter-group">
+        <select id="filterType" onchange="renderHistory()">
+          <option value="all">Semua Aktivitas</option>
+          <option value="Enkripsi">Enkripsi</option>
+          <option value="Dekripsi">Dekripsi</option>
+        </select>
+        <div class="date-range"><i class="fas fa-calendar"></i><span id="dateRangeLabel">Semua Waktu</span></div>
+      </div>
+      <div class="toolbar-right">
+        <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput" placeholder="Cari aktivitas..." oninput="renderHistory()"></div>
+        <button class="btn-clear" onclick="clearHistory()"><i class="fas fa-trash"></i> Bersihkan Riwayat</button>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-pill"><i class="fas fa-file-lines"></i><div><span class="big" id="rTotal">0</span><span>Total Aktivitas</span></div></div>
+      <div class="stat-pill green"><i class="fas fa-lock"></i><div><span class="big" id="rEnc">0</span><span>Enkripsi</span></div></div>
+      <div class="stat-pill blue"><i class="fas fa-lock-open"></i><div><span class="big" id="rDec">0</span><span>Dekripsi</span></div></div>
+      <div class="stat-pill orange"><i class="fas fa-clock"></i><div><span class="big" id="rAvg">0</span><span>Rata-rata/Hari</span></div></div>
+    </div>
+    <div class="table-card">
+      <table id="historyTable">
+        <thead><tr><th>No</th><th>Jenis</th><th>Tanggal & Waktu</th><th>Input</th><th>Output</th><th>Aksi</th></tr></thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+      <div id="historyEmpty" class="table-empty" style="display:none"><i class="fas fa-inbox fa-3x"></i><p>Belum ada aktivitas.</p></div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </section>
+
+  <!-- TENTANG -->
+  <section id="page-tentang" class="page">
+    <div class="page-header">
+      <div><h1><i class="fas fa-circle-info"></i> Tentang</h1><p>Informasi tentang sistem Triple DES Security.</p></div>
+    </div>
+    <div class="about-hero">
+      <div class="about-shield-wrap">
+        <div class="hero-rings"><div class="ring ring1"></div><div class="ring ring2"></div><div class="ring ring3"></div></div>
+        <i class="fas fa-shield-halved about-shield"></i>
+      </div>
+      <div class="about-text">
+        <h2>Apa Itu Triple DES?</h2>
+        <p>Triple DES (3DES) adalah algoritma enkripsi yang menggunakan tiga kali proses DES untuk meningkatkan keamanan data.</p>
+        <div class="about-badges">
+          <div class="badge badge-blue"><i class="fas fa-shield"></i><div><strong>Aman</strong><span>Menggunakan 3 kunci berbeda untuk keamanan berlapis.</span></div></div>
+          <div class="badge badge-green"><i class="fas fa-check-circle"></i><div><strong>Terpercaya</strong><span>Algoritma yang telah teruji dan digunakan secara luas.</span></div></div>
+          <div class="badge badge-purple"><i class="fas fa-bolt"></i><div><strong>Efisien</strong><span>Proses cepat dengan hasil enkripsi yang andal.</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon fi-purple"><i class="fas fa-key"></i></div>
+        <h3>Keunggulan</h3>
+        <ul><li><i class="fas fa-check"></i>Keamanan berlapis dengan 3 kunci</li><li><i class="fas fa-check"></i>Perlindungan data lebih kuat</li><li><i class="fas fa-check"></i>Cocok untuk data sensitif</li><li><i class="fas fa-check"></i>Algoritma yang terpercaya</li></ul>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-green"><i class="fas fa-layer-group"></i></div>
+        <h3>Fungsi Utama</h3>
+        <ul><li><i class="fas fa-check"></i>Enkripsi data penting</li><li><i class="fas fa-check"></i>Dekripsi data terenkripsi</li><li><i class="fas fa-check"></i>Manajemen kunci keamanan</li><li><i class="fas fa-check"></i>Pencatatan riwayat aktivitas</li></ul>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-blue"><i class="fas fa-code"></i></div>
+        <h3>Teknologi</h3>
+        <p>Sistem ini dibangun menggunakan teknologi web modern untuk memberikan pengalaman pengguna yang cepat dan aman.</p>
+        <div class="tech-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-orange"><i class="fas fa-user-shield"></i></div>
+        <h3>Keamanan</h3>
+        <p>Semua proses dilakukan secara lokal di browser Anda. Data tidak dikirim ke server manapun, sehingga lebih aman dan privat.</p>
+      </div>
+    </div>
+    <div class="footer-card">
+      <div class="footer-left"><i class="fas fa-shield-halved"></i><div><strong>Sistem Triple DES Security v1.0</strong><p>Dibuat untuk memberikan solusi keamanan data yang andal dan mudah digunakan.</p></div></div>
+      <div class="footer-right"><i class="fas fa-laptop-code fa-3x"></i></div>
+    </div>
+    <p class="copyright">© 2025 Triple DES Security. All rights reserved.</p>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
