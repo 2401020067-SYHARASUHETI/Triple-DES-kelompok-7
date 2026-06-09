@@ -304,4 +304,11 @@ tbody td:first-child { color: var(--text3); font-size: 12px; }
   .hero-banner { flex-direction: column; }
   .flow-visual { display: none; }
 }
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .main-content { margin-left: 0; max-width: 100%; }
+  .two-col, .quick-grid, .features-grid { grid-template-columns: 1fr; }
+  .hero-banner { flex-direction: column; }
+  .flow-visual { display: none; }
+}
 
